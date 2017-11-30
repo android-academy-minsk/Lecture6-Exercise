@@ -55,7 +55,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     @Override
     public void onClick(View view) {
         int position = (int) view.getTag();
-        mListener.onDeleteNote(mNoteList.get(position));
+        Note note = mNoteList.get(position);
+        mListener.onDeleteNote(note);
+        mNoteList.remove(note);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, mNoteList.size());
     }
 
     @Override
