@@ -1,6 +1,7 @@
 package net.alexandroid.roomfirststepstutorial;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -43,7 +44,22 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void onAddNoteBtnClick() {
+        String title = mEtTitle.getText().toString();
+        String body = mEtBody.getText().toString();
+        Note note = createNote(title, body);
 
+        AppDatabase.getInstance(this).noteDao().insert(note);
+
+        mEtTitle.getText().clear();
+        mEtBody.getText().clear();
+    }
+
+    @NonNull
+    private Note createNote(String title, String body) {
+        Note note = new Note();
+        note.setTitle(title);
+        note.setBody(body);
+        return note;
     }
 
     @Override
