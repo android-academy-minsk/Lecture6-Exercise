@@ -4,21 +4,46 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import net.alexandroid.roomfirststepstutorial.db.AppDatabase;
 import net.alexandroid.roomfirststepstutorial.db.Note;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NotesAdapter.NotesAdapterInteraction {
+public class MainActivity extends AppCompatActivity
+        implements NotesAdapter.NotesAdapterInteraction {
 
     private NotesAdapter mNotesAdapter;
+    private Button mBtnAddNote;
+    private EditText mEtTitle;
+    private EditText mEtBody;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setViews();
         setRecyclerView();
+    }
+
+    private void setViews() {
+        mBtnAddNote = findViewById(R.id.btnAddNote);
+        mEtTitle = findViewById(R.id.etTitle);
+        mEtBody = findViewById(R.id.etBody);
+
+        mBtnAddNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onAddNoteBtnClick();
+            }
+        });
+    }
+
+    private void onAddNoteBtnClick() {
+
     }
 
     @Override
