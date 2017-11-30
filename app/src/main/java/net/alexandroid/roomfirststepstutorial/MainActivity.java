@@ -13,6 +13,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NotesAdapter.NotesAdapterInteraction {
 
+    private NotesAdapter mNotesAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +34,8 @@ public class MainActivity extends AppCompatActivity implements NotesAdapter.Note
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        NotesAdapter notesAdapter = new NotesAdapter(this, getNoteList());
-        recyclerView.setAdapter(notesAdapter);
+        mNotesAdapter = new NotesAdapter(this, getNoteList());
+        recyclerView.setAdapter(mNotesAdapter);
     }
 
     private List<Note> getNoteList() {
@@ -56,6 +58,6 @@ public class MainActivity extends AppCompatActivity implements NotesAdapter.Note
     // NotesAdapter.NotesAdapterInteraction interface methods
     @Override
     public void onDeleteNote(Note note) {
-
+        AppDatabase.getInstance(this).noteDao().delete(note);
     }
 }
