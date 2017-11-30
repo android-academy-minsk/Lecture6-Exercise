@@ -1,7 +1,6 @@
 package net.alexandroid.roomfirststepstutorial;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -39,20 +38,7 @@ public class MainActivity extends AppCompatActivity implements NotesAdapter.Note
     }
 
     private List<Note> getNoteList() {
-        AppDatabase.getInstance(this).noteDao().insertAll(
-                createNote("Title 1", "Body 1"),
-                createNote("Title 2", "Body 2"),
-                createNote("Title 3", "Body 3")
-        );
         return AppDatabase.getInstance(this).noteDao().getAll();
-    }
-
-    @NonNull
-    private Note createNote(String title, String body) {
-        Note note = new Note();
-        note.setTitle(title);
-        note.setBody(body);
-        return note;
     }
 
     // NotesAdapter.NotesAdapterInteraction interface methods
