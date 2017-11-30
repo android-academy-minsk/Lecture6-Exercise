@@ -6,9 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import net.alexandroid.roomfirststepstutorial.db.AppDatabase;
 import net.alexandroid.roomfirststepstutorial.db.Note;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NotesAdapter.NotesAdapterInteraction {
@@ -18,6 +18,12 @@ public class MainActivity extends AppCompatActivity implements NotesAdapter.Note
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRecyclerView();
+    }
+
+    @Override
+    protected void onDestroy() {
+        AppDatabase.destroyInstance();
+        super.onDestroy();
     }
 
     private void setRecyclerView() {
@@ -31,11 +37,12 @@ public class MainActivity extends AppCompatActivity implements NotesAdapter.Note
     }
 
     private List<Note> getNoteList() {
-        List<Note> list = new ArrayList<>();
-        list.add(createNote("Title 1 for tests", "Body 1 for tests"));
-        list.add(createNote("Title 2 for tests", "Body 2 for tests"));
-        list.add(createNote("Title 3 for tests", "Body 3 for tests"));
-        return list;
+        AppDatabase.getInstance(this).noteDao().insertAll(
+                createNote("Title 1", "Body 1"),
+                createNote("Title 2", "Body 2"),
+                createNote("Title 3", "Body 3")
+        );
+        return AppDatabase.getInstance(this).noteDao().getAll();
     }
 
     @NonNull
