@@ -24,6 +24,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         mNoteList = noteList;
     }
 
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView tvTitle;
@@ -61,6 +62,12 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, mNoteList.size());
     }
+
+    public void updateList(List<Note> updatedList) {
+        mNoteList = updatedList;
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public int getItemCount() {

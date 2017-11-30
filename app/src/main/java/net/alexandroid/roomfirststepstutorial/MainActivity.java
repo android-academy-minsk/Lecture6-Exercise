@@ -51,7 +51,11 @@ public class MainActivity extends AppCompatActivity
         AppDatabase.getInstance(this).noteDao().insert(note);
 
         mEtTitle.getText().clear();
+        mEtTitle.requestFocus();
         mEtBody.getText().clear();
+
+        List<Note> updatedList = getNoteList();
+        mNotesAdapter.updateList(updatedList);
     }
 
     @NonNull
