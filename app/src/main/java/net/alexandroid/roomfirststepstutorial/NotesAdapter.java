@@ -1,6 +1,5 @@
 package net.alexandroid.roomfirststepstutorial;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +8,8 @@ import android.widget.TextView;
 import net.alexandroid.roomfirststepstutorial.db.Note;
 
 import java.util.List;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created on 11/30/2017.
