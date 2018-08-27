@@ -1,9 +1,6 @@
 package net.alexandroid.roomfirststepstutorial;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +9,10 @@ import net.alexandroid.roomfirststepstutorial.db.AppDatabase;
 import net.alexandroid.roomfirststepstutorial.db.Note;
 
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity
         implements NotesAdapter.NotesAdapterInteraction {
